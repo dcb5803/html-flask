@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Flask API Demo</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 2rem; }
+    button { margin: 0.5rem; padding: 0.5rem 1rem; }
+    pre { background: #f4f4f4; padding: 1rem; border-radius: 5px; }
+  </style>
+</head>
+<body>
+  <h1>Access Flask API from HTML (Vercel)</h1>
+
+  <button onclick="callAPI('/')">Call Root Endpoint</button>
+  <button onclick="callAPI('/ping')">Call Ping Endpoint</button>
+
+  <h2>Response:</h2>
+  <pre id="output">Click a button to fetch data...</pre>
+
+  <script>
+    // Replace with your Hugging Face Space URL
+    const BASE_URL = "https://huggingface.co/spaces/mahesh1209/api";
+
+    async function callAPI(path) {
+      try {
+        const res = await fetch(BASE_URL + path);
+        const data = await res.json();
+        document.getElementById("output").textContent = JSON.stringify(data, null, 2);
+      } catch (err) {
+        document.getElementById("output").textContent = "Error: " + err;
+      }
+    }
+  </script>
+</body>
+</html>
